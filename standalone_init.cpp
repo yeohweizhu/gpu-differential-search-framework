@@ -5,63 +5,10 @@ using namespace std;
 
 unsigned char sbox_gift[16] ={0x1,0xa,0x4,0xc,0x6,0xf,0x3,0x9,0x2,0xd,0xb,0x7,0x5,0x0,0x8,0xe};
 
-//Sample for generating diff_table and permutation
+//Sample for generating diff_table
 //NOTE That the prob is actually frequency. To obtain prob just divide it by the total frequency.
 
 int main(){
-    //  std::cout <<"\nInit GIFT Reverse Differential Table:{\n";
-    // std::cout <<"\nGift Permutation:{\n";
-    // for (int i = 0; i < 64; i++) {
-	// 	if (i%16==0){
-	// 		std:: cerr <<"\n";
-	// 	}
-    //     perm_host[i] = (4 * (i / 16)) + (16 * (( (3 *((i % 16) /4)) + (i%4) ) % 4))  + (i % 4);
-    //     std::cout << (int) TRIFLE::perm_host[i]<< ",";
-    // }
-    // std::cout << "\n}\n" ;
-
-    // std::cout <<"\nGift Permutation Reversed:{\n";
-    // for (int i=0;i<64;i++){
-    //     TRIFLE::perm_host_reversed[TRIFLE::perm_host[i]] = i;
-    // }
-    // for (int i=0;i<64;i++){
-    //     std::cout << (int) TRIFLE::perm_host_reversed[i]<< ",";
-    // }
-    // std::cout << "}\n" ;
-
-    //--
-    // std::cout <<"\n4bit Permutation LUTable * 32 (Size is 32*16*16 is 8192Bytes) :{\n";
-    // for (int sbox_pos=0;sbox_pos<16;sbox_pos++){
-    //     for (int sbox_val=0;sbox_val<16;sbox_val++){
-    //         unsigned char dx[16] = {0};
-    //         dx[sbox_pos] = sbox_val;
-
-    //         //Do permutation
-    //         unsigned long long front_64 = 0, front_64_reversed=0;
-	// 		for (int i = 0; i < 16; i++) {
-	// 			if (dx[i] > 0) {
-	// 				for (int j = 0; j < 4; j++) {
-    //                     //Actually filtered_bit
-	// 					unsigned long long filtered_word = ((dx[i] & (0x1 << j)) >> j) & 0x1;
-	// 					if (filtered_word == 0) continue; //no point continue if zero, go to next elements
-
-    //                     int bit_pos = (TRIFLE::perm_host[((15 - i) * 4) + j]);
-    //                     int bit_pos_reversed = (TRIFLE::perm_host_reversed[((15 - i) * 4) + j]);
-
-	// 					front_64 |= (filtered_word << bit_pos);
-	// 					front_64_reversed |= (filtered_word << bit_pos_reversed);
-	// 				}
-	// 			}
-	// 		}
-            
-    //         //Front 64, 0-15, Back64 - 16-31
-    //         TRIFLE::perm_lookup_host[sbox_pos][sbox_val]=front_64;
-
-    //         TRIFLE::perm_lookup_host_reversed[sbox_pos][sbox_val]=front_64_reversed;
-    //     }
-    // }
-    // std::cout << "}\n" ;
-
 	//Differential Table
 	unsigned int diff_table_raw[16][16] ={0};
 	for (int x1=0;x1<16;x1++){
